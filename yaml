@@ -1,0 +1,17 @@
+import yaml
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# Criando pessoa
+person = Person(name='Jessa', age=28)
+
+# Criando dicionario
+person_dict = {'Person': {'age': person.age, 'name': person.name}}
+
+# Parsando 
+yaml_obj = yaml.dump(person_dict)
+
+print(yaml_obj)
