@@ -1,0 +1,67 @@
+import yaml
+
+class ModelData:
+    def __init__(self, ip, model, files):
+        self._ip = ip
+        self._model = model
+        self._files = files
+
+    # Getter methods
+    def get_ip(self):
+        return self._ip
+
+    def get_model(self):
+        return self._model
+
+    def get_files(self):
+        return self._files
+
+    # Setter methods
+    def set_ip(self, ip):
+        self._ip = ip
+
+    def set_model(self, model):
+        self._model = model
+
+    def set_files(self, files):
+        self._files = files
+
+    def to_dict(self):
+        return {
+            'model': {
+                'sa': {
+                    'pll': {
+                        'ip': self._ip,
+                        'model': self._model,
+                        'files': self._files
+                    }
+                }
+            }
+        }
+
+    def save_to_yaml(self, output_file):
+        data = self.to_dict()
+        with open(output_file, 'w') as yaml_file:
+            yaml.dump(data, yaml_file, default_flow_style=False)
+        print(f"Data written to {output_file}")
+
+# Example usage
+if __name__ == "__main__":
+    data_instance = ModelData(
+        ip="asdasdasd",
+        model="asdasda",
+        files=["aaaaaaaaaaa", "aaaaaaaaaaa"]
+    )
+
+    # Accessing data using getters
+    print("IP:", data_instance.get_ip())
+    print("Model:", data_instance.get_model())
+    print("Files:", data_instance.get_files())
+
+    # Modifying data using setters
+    data_instance.set_ip("new_ip_value")
+    data_instance.set_model("new_model_value")
+    data_instance.set_files(["new_file1", "new_file2"])
+
+    # Save to YAML
+    data_instance.save_to_yaml("output.yaml")
