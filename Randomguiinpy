@@ -1,1 +1,52 @@
+from tkinter import messagebox
 
+# Create the main application window
+root = tk.Tk()
+root.title("Configuration Input")
+
+# Initialize the data structure (modify as needed)
+data = {
+    # ... (your dictionary structure)
+}
+
+# Function to handle saving the input data
+def save_data():
+    # Get input values from the user
+    ip_value = ip_entry.get()
+    model_value = model_entry.get()
+    files_value = files_entry.get()
+
+    # Update the data structure
+    data["Models"]["Sa"]["pll_dphy_auto"]["ip"] = ip_value
+    data["Models"]["Sa"]["pll_dphy_auto"]["model"] = model_value
+    data["Models"]["Sa"]["pll_dphy_auto"]["files"] = files_value.split(", ")
+
+    # Show a confirmation message
+    messagebox.showinfo("Saved", "Configuration data saved successfully!")
+
+# Create input fields
+ip_label = tk.Label(root, text="IP:")
+ip_entry = tk.Entry(root)
+
+model_label = tk.Label(root, text="Model:")
+model_entry = tk.Entry(root)
+
+files_label = tk.Label(root, text="Files (comma-separated):")
+files_entry = tk.Entry(root)
+
+save_button = tk.Button(root, text="Save", command=save_data)
+
+# Arrange widgets using grid layout
+ip_label.grid(row=0, column=0, sticky="w")
+ip_entry.grid(row=0, column=1)
+
+model_label.grid(row=1, column=0, sticky="w")
+model_entry.grid(row=1, column=1)
+
+files_label.grid(row=2, column=0, sticky="w")
+files_entry.grid(row=2, column=1)
+
+save_button.grid(row=3, column=0, columnspan=2)
+
+# Start the GUI event loop
+root.mainloop()
