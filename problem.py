@@ -53,3 +53,16 @@ def save_simulation():
         save_to_yaml( gui_simulation.construct_simulation())
 
     messagebox.showinfo("Saved", "Configuration simulation saved successfully!")
+
+
+def save_simulation():
+    if globals()["new_simulation_name_entry"].get() in gui_simulation.dict_simulation:
+        save_to_yaml(gui_simulation.construct_simulation())
+    else:
+        new_simulation_name = globals()["new_simulation_name_entry"].get()
+        gui_simulation.dict_simulation["simulations"][new_simulation_name] = {
+            "compile_caf": "new_value",  # Replace with actual value
+            "timing": "new_value",  # Replace with actual value
+            # Add other relevant keys and values here
+        }
+        save_to_yaml(gui_simulation.construct_simulation())
