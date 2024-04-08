@@ -66,3 +66,13 @@ def save_simulation():
             # Add other relevant keys and values here
         }
         save_to_yaml(gui_simulation.construct_simulation())
+
+
+
+# Load your image (replace "your_image.png" with the actual path)
+image_path = "your_image.png"
+img = ImageTk.PhotoImage(Image.open(image_path))
+
+# Create a Label widget to display the image
+image_label = tk.Label(root, image=img)
+image_label.grid(row=0, column=0, padx=10, pady=10)
