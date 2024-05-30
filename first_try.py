@@ -116,3 +116,15 @@ class Anotation(Action):
         main_string += ' end\n'
         main_string += 'endmodule\n'
         return main_string
+def copy_with_different_name(self, original_file_path, new_file_name):
+    # Get the directory path of the original file
+    directory = os.path.dirname(original_file_path)
+    
+    # Create the new file path by joining the directory path and the new file name
+    new_file_path = os.path.join(directory, new_file_name)
+    
+    # Copy the original file to the new file path
+    shutil.copy2(original_file_path, new_file_path)
+    
+    # Return the new file path
+    return new_file_path
